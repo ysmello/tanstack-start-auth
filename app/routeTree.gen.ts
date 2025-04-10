@@ -11,9 +11,16 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as PrivateImport } from './routes/private'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const PrivateRoute = PrivateImport.update({
+  id: '/private',
+  path: '/private',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -32,6 +39,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/private': {
+      id: '/private'
+      path: '/private'
+      fullPath: '/private'
+      preLoaderRoute: typeof PrivateImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/private': typeof PrivateRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/private': typeof PrivateRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/private': typeof PrivateRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/private'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/private'
+  id: '__root__' | '/' | '/private'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PrivateRoute: typeof PrivateRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PrivateRoute: PrivateRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/private"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/private": {
+      "filePath": "private.tsx"
     }
   }
 }

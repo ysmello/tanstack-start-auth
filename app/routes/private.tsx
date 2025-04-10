@@ -2,8 +2,9 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
+import { MaskedImage } from '~/components/ui/masked-image';
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/private')({
   component: RouteComponent,
 });
 
@@ -12,29 +13,31 @@ function RouteComponent() {
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex p-6 md:p-10">
         <div className="flex flex-col flex-1 items-center justify-center">
-          <form className="flex flex-col gap-6 w-full max-w-xs">
+          <div className="flex flex-col gap-16 w-full max-w-xs">
             <div className="flex flex-col items-center gap-2">
-              <h3 className="text-2xl font-bold">Entre na sua conta</h3>
-              <p className="text-sm text-muted-foreground">
-                Insira seu email e senha para acessar sua conta
-              </p>
+              <h1 className="text-4xl text-center font-bold">
+                Bem-vindo ao Nosso Projeto
+              </h1>
             </div>
             <div className="flex flex-col gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input type="email" placeholder="Email" />
+              <p>Tecnologias usadas:</p>
+              <div className="flex flex-wrap gap-2 text-3xl">
+                <ul>
+                  <li>React</li>
+                  <li>Tailwind</li>
+                  <li>TypeScript</li>
+                  <li>Node.js</li>
+                </ul>
+              </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="password">Senha</Label>
-              <Input type="password" placeholder="Senha" />
-            </div>
-            <Button type="submit">Login</Button>
-          </form>
+          </div>
         </div>
       </div>
-      <div className="bg-muted relative hidden lg:block">
-        <img
-          src="/signin.png"
+      <div className="relative hidden lg:block">
+        <MaskedImage
+          src="/glib.png"
           alt="Signin background"
+          variant="shape6"
           className="object-cover absolute inset-0 h-full w-full dark:brightness-[0.2] dark:grayscale"
         />
       </div>
