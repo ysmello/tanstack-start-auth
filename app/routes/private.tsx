@@ -21,14 +21,26 @@ function RouteComponent() {
             </div>
             <div className="flex flex-col gap-2">
               <p>Tecnologias usadas:</p>
-              <div className="flex flex-wrap gap-2 text-3xl">
-                <ul>
-                  <li>React</li>
-                  <li>Tailwind</li>
-                  <li>TypeScript</li>
-                  <li>Node.js</li>
-                </ul>
-              </div>
+              <ul className="space-y-2 text-3xl">
+                {[
+                  { name: 'React', icon: '/icons/react.png', url: 'https://react.dev' },
+                  { name: 'Tailwind', icon: '/icons/tailwind.png', url: 'https://tailwindcss.com' },
+                  { name: 'TypeScript', icon: '/icons/typescript.png', url: 'https://www.typescriptlang.org' },
+                  { name: 'Node.js', icon: '/icons/nodejs.png', url: 'https://nodejs.org' },
+                ].map((tech) => (
+                  <li key={tech.name}>
+                    <a
+                      href={tech.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 hover:scale-105 hover:text-blue-600 transition-transform duration-200"
+                    >
+                      <img src={tech.icon} alt={tech.name} className="w-5 h-5" />
+                      <span>{tech.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
