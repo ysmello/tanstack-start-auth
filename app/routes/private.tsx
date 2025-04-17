@@ -8,6 +8,13 @@ export const Route = createFileRoute('/private')({
   component: RouteComponent,
 });
 
+const technologies = [
+  { name: 'React', icon: '/icons/react.png', url: 'https://react.dev' },
+  { name: 'Tailwind', icon: '/icons/tailwind.png', url: 'https://tailwindcss.com' },
+  { name: 'TypeScript', icon: '/icons/typescript.png', url: 'https://www.typescriptlang.org' },
+  { name: 'Node.js', icon: '/icons/nodejs.png', url: 'https://nodejs.org' },
+];
+
 function RouteComponent() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
@@ -22,12 +29,7 @@ function RouteComponent() {
             <div className="flex flex-col gap-2">
               <p>Tecnologias usadas:</p>
               <ul className="space-y-2 text-3xl">
-                {[
-                  { name: 'React', icon: '/icons/react.png', url: 'https://react.dev' },
-                  { name: 'Tailwind', icon: '/icons/tailwind.png', url: 'https://tailwindcss.com' },
-                  { name: 'TypeScript', icon: '/icons/typescript.png', url: 'https://www.typescriptlang.org' },
-                  { name: 'Node.js', icon: '/icons/nodejs.png', url: 'https://nodejs.org' },
-                ].map((tech) => (
+                {technologies.map((tech) => (
                   <li key={tech.name}>
                     <a
                       href={tech.url}
