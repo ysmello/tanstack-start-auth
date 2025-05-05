@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
@@ -8,6 +8,16 @@ export const Route = createFileRoute('/')({
 });
 
 function RouteComponent() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    localStorage.setItem('token', 'token');
+    navigate({
+      to: '/private',
+      replace: true,
+    });
+  };
+
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex p-6 md:p-10">
@@ -27,7 +37,9 @@ function RouteComponent() {
               <Label htmlFor="password">Senha</Label>
               <Input type="password" placeholder="Senha" />
             </div>
-            <Button type="submit">Login</Button>
+            <Button type="submit" onClick={handleLogin}>
+              Login
+            </Button>
           </form>
         </div>
       </div>
